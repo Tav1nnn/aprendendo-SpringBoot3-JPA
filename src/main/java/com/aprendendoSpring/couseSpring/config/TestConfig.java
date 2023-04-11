@@ -3,22 +3,19 @@ package com.aprendendoSpring.couseSpring.config;
 import java.time.Instant;
 import java.util.Arrays;
 
+import com.aprendendoSpring.couseSpring.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import com.aprendendoSpring.couseSpring.entities.Category;
-import com.aprendendoSpring.couseSpring.entities.Order;
-import com.aprendendoSpring.couseSpring.entities.OrderItem;
-import com.aprendendoSpring.couseSpring.entities.Product;
-import com.aprendendoSpring.couseSpring.entities.User;
 import com.aprendendoSpring.couseSpring.entities.enums.OrderStatus;
 import com.aprendendoSpring.couseSpring.repositories.CategoryRepository;
 import com.aprendendoSpring.couseSpring.repositories.OrderItemRepository;
 import com.aprendendoSpring.couseSpring.repositories.OrderRepository;
 import com.aprendendoSpring.couseSpring.repositories.ProductRepository;
 import com.aprendendoSpring.couseSpring.repositories.UserRepository;
+import org.springframework.http.HttpStatus;
 
 @Configuration
 @Profile("test")
@@ -83,6 +80,9 @@ public class TestConfig implements CommandLineRunner{
 		
 		orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
 
+		Payment pay1 = new Payment(null, Instant.parse("2019-06-20T21:53:07Z"), o1);
+		o1.setPayment(pay1);
+		orderRepository.save(o1);
 	}
 	
 }
