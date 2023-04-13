@@ -34,6 +34,10 @@ public class OrderItem implements Serializable{
 		this.price = price;
 	}
 
+	public String getTeste () {
+		return "Teste";
+	}
+
 	public double getSubTotal () {
 		return quantity*price;
 	}
