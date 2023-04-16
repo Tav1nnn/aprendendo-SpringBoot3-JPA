@@ -3,6 +3,7 @@ package com.aprendendoSpring.couseSpring.services;
 import java.util.List;
 import java.util.Optional;
 
+import com.aprendendoSpring.couseSpring.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,7 @@ public class UserService {
 	public User findAllId(Long id) {
 		Optional<User> obj = repository.findById(id);
 		
-		return obj.get();
+		return obj.orElseThrow(()-> new ResourceNotFoundException(id));
 	}
 
 	public User insert (User obj) {
